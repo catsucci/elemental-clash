@@ -3,3 +3,28 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    font-family: 'Macondo Swash Caps', cursive;
+    color: #5e5e5e;
+}
+
+.gameHeader {
+    text-align: center;
+    font-size: 25px;
+    color: #5e5e5e;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: space-evenly;
+}
+
+.earthColor {
+    color: #1F690F;
+}
+.waterColor {
+    color: #182F7C;
+}
+.fireColor {
+    color: #9E0B00;
+}
