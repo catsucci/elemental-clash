@@ -4,6 +4,18 @@
     padding: 0;
 }
 
+.earthColor {
+    color: #1F690F;
+}
+
+.waterColor {
+    color: #182F7C;
+}
+
+.fireColor {
+    color: #9E0B00;
+}
+
 body {
     font-family: 'Macondo Swash Caps', cursive;
     color: #5e5e5e;
@@ -19,12 +31,156 @@ body {
     justify-content: space-evenly;
 }
 
-.earthColor {
-    color: #1F690F;
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
 }
-.waterColor {
-    color: #182F7C;
+
+.elementsArea {
+    display: flex;
+    justify-content: space-evenly;
+    border: 4px solid #5e5e5e;
+    border-radius: 5px;
+    height: 180px;
 }
-.fireColor {
-    color: #9E0B00;
+
+.elementButton {
+    background-color: transparent;
+    border: none;
+}
+
+.elementButton:focus,
+.play-again:focus {
+    outline: none;
+}
+
+.elementIcon {
+    margin: 50px 0;
+    color: #5e5e5e;
+    font-size: 70px;
+    transition: all .3s;
+}
+
+.elementIcon:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.1);
+    transition: all .3s;
+}
+
+.earthIcon:hover {
+    color: #1F690F !important;
+}
+
+.waterIcon:hover {
+    color: #182F7C !important;
+}
+
+.fireIcon:hover {
+    color: #9E0B00 !important;
+}
+
+.separator {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 70%;
+    text-align: center;
+}
+
+.gameOutput {
+    display: flex;
+    border: 4px solid #5e5e5e;
+    border-radius: 5px;
+    transition: all .2s linear;
+    height: 150px;
+}
+
+.computerPlayDiv {
+    transition: all .2s linear;
+}
+
+.computerTitle {
+    margin: 19px 19px 20px 19px;
+    font-size: 19px;
+    text-align: center;
+}
+
+.computerIcon {
+    margin: 50px 50px 40px 50px;
+    color: #5e5e5e;
+    font-size: 20px;
+}
+
+.gameResults {
+    margin: 0 20px;
+    font-size: 19px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* Computer Div Borders for Javascript */
+.purpleBorder {
+    border-right: 4px solid #8070ac;
+}
+
+.greenBorder {
+    border-right: 4px solid #62b49c;
+}
+
+.redBorder {
+    border-right: 4px solid #b96b78;
+}
+
+.greyBorder {
+    border-right: 4px solid #5e5e5e;
+}
+
+* Game End */ .opacity {
+    opacity: 0.5;
+}
+
+.gameEndDiv {
+    text-align: center;
+}
+
+.gameEndText {
+    font-size: 50px;
+    margin: 20px 0;
+}
+
+.playAgain {
+    /* visibility: hidden; */
+    margin-bottom: 60px;
+    padding: 20px;
+    font-size: 25px;
+    color: #5e5e5e;
+    border: 4px solid #5e5e5e;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.playAgain:hover {
+    background-color: #5e5e5e;
+    color: #fff;
+}
+
+/* Footer */
+.copyright {
+    position: fixed;
+    bottom: 0px;
+    height: 50px;
+    width: 100%;
+    background-color: #fff;
+    border-top: 4px solid #5e5e5e;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
