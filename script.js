@@ -1,102 +1,52 @@
 'use strict'
 
-let roundCounter = 0;
-let playerScoreCount = 0;
-let computerScoreCount = 0;
+let playerLivesLeft = 5;
+let computerLivesLeft = 5;
 
-function getPlayerInput() {
-    return prompt("Choose Your Element:").toUpperCase();
+function getComputerSelection() {
+    let selections = ["fire", "water", "earth"];
+    return selections[Math.floor(Math.random() * selections.length)];
 }
 
-function checkplayerInput(choice) {
-    switch (choice) {
-        case "FIRE":
-        case "WATER":
-        case "EARTH":
-            return true;
-        default:
-            return false;
+function playRound( playerSelection ) {
+    if ( playerLivesLeft > 0 && computerLivesLeft > 0 ) {
+        let computerSelection = getComputerSelection();
+        let winner = getWinner(playerSelection, computerSelection);
+        console.log( getRoundWinner(winner, playerSelection, computerSelection) );
+    } else if ( computerLivesLeft === 0 ) {
+        console.log('Hehe, poor enemy has no lives left.. He barely holds himself in one piece.');
+        console.log('You Won This Battle!');
+    } else {
+        console.log('Ouch.. No lives left for you. Enjoy the mocking laughter of the enemy.');
+        console.log('You Lost This Battle!');
     }
 }
 
-function informIncorrectplayerInput() {
-    alert(
-        "Incorrect player input, please make sure your input is correctly formatted."
-    );
-}
-
-function getComputerChoice() {
-    let choices = ["fire", "water", "earth"];
-    return choices[Math.floor(Math.random() * choices.length)];
-}
-
-// function getPlayerChoice() {
-//     let playerChoice = getPlayerInput();
-//     let keepGoing = checkplayerInput(playerChoice) ? false : true;
-//     while (keepGoing) {
-//         informIncorrectplayerInput();
-//         playerChoice = getPlayerInput();
-//         keepGoing = checkplayerInput(playerChoice) ? false : true;
-//     }
-//     return playerChoice;
-// }
-
-function getWinner(playerChoice, computerChoice) {
-    if (
-        (playerChoice === "earth" && computerChoice === "water") ||
-        (playerChoice === "fire" && computerChoice === "earth") ||
-        (playerChoice === "water" && computerChoice === "fire")
-    ) {
-        return "player";
+function getWinner(playerSelection, computerSelection) {
+    if ( playerSelection === computerSelection ) {
+        return "draw";
     } else if (
-        (computerChoice === "earth" && playerChoice === "water") ||
-        (computerChoice === "fire" && playerChoice === "earth") ||
-        (computerChoice === "water" && playerChoice === "fire")
+        (computerSelection === "earth" && playerSelection === "water") ||
+        (computerSelection === "fire" && playerSelection === "earth") ||
+        (computerSelection === "water" && playerSelection === "fire")
     ) {
+        computerLivesLeft--;
         return "computer";
     } else {
-        return "draw";
+        playerLivesLeft--;
+        return "player";
     }
 }
 
-function playRound( playerChoice ) {
-    console.log(playerChoice);
-    let computerChoice = getComputerChoice();
-    let winner = getWinner(playerChoice, computerChoice);
-    console.log( getRoundWinner(winner, playerChoice, computerChoice) );
-}
-
-function getRoundWinner(winner, playerChoice, computerChoice) {
-    roundCounter++;
+function getRoundWinner(winner, playerSelection, computerSelection) {
     switch (winner) {
         case "player":
-            playerScoreCount++;
-            return `You won! ${playerChoice} beats ${computerChoice} // Player: ${playerScoreCount} - ${computerScoreCount} :Computer`;
+            return `Impressive attack! The enemy lost one life, because the great power of your ${playerSelection} crushed his ${computerSelection}!`;
         case "computer":
-            computerScoreCount++;
-            return `Computer won! ${computerChoice} beats ${playerChoice} // Player: ${playerScoreCount} - ${computerScoreCount} :Computer`;
+            return `Unfortunate defeat.. You lost one life, because your ${playerSelection} lacks of power against enemy's ${computerSelection}!`;;
         case "draw":
-            // playerScoreCount++;
-            // computerScoreCount++;
-            return `It's a draw! Score: player: ${playerScoreCount} - ${computerScoreCount} :Computer`;
+            return `Hmm.. Two ${playerSelection}s means a draw, so no lives were lost. Let's try again.`;
     }
-}
-
-function game() {
-    let overallWinner;
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound());
-    }
-    if (playerScoreCount > computerScoreCount) {
-        overallWinner = "You won!";
-    } else if (computerScoreCount > playerScoreCount) {
-        overallWinner = "Computer won!";
-    } else {
-        overallWinner = "It's a draw!";
-    }
-    console.log(
-        `Game finished! ${overallWinner} player: ${playerScoreCount} - ${computerScoreCount} :Computer`
-    );
 }
 
 const earthBtn = document.querySelector('.earthButton');
