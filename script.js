@@ -1,7 +1,22 @@
 'use strict'
 
+let round = {
+    roundCount:  0,
+    winner: "",
+    playerSelection: "",
+    computerSelection: ""
+
+};
+
 let playerLivesLeft = 5;
 let computerLivesLeft = 5;
+let roundCount = 0;
+
+const nodeRound = document.querySelector('.round');
+const nodeLives = document.querySelector('.lives');
+const nodeCombatText = document.querySelector('.combatText');
+const nodeGameEndText = document.querySelector('.gameEndText');
+const nodeComputerIcon = document.querySelector('.omputerIcon');
 
 function getComputerSelection() {
     let selections = ["fire", "water", "earth"];
@@ -20,6 +35,8 @@ function playRound( playerSelection ) {
         console.log('Ouch.. No lives left for you. Enjoy the mocking laughter of the enemy.');
         console.log('You Lost This Battle!');
     }
+    roundCount++;
+    nodeRound.textContent = `Round: ${roundCount}`;
 }
 
 function getWinner(playerSelection, computerSelection) {
