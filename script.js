@@ -1,14 +1,14 @@
 'use strict'
 
 let roundCounter = 0;
-let userScoreCount = 0;
+let playerScoreCount = 0;
 let computerScoreCount = 0;
 
-function getUserInput() {
+function getPlayerInput() {
     return prompt("Choose Your Element:").toUpperCase();
 }
 
-function checkUserInput(choice) {
+function checkplayerInput(choice) {
     switch (choice) {
         case "FIRE":
         case "WATER":
@@ -19,39 +19,39 @@ function checkUserInput(choice) {
     }
 }
 
-function informIncorrectUserInput() {
+function informIncorrectplayerInput() {
     alert(
-        "Incorrect user input, please make sure your input is correctly formatted."
+        "Incorrect player input, please make sure your input is correctly formatted."
     );
 }
 
 function getComputerChoice() {
-    let choices = ["FIRE", "WATER", "EARTH"];
+    let choices = ["fire", "water", "earth"];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function getUserChoice() {
-    let userChoice = getUserInput();
-    let keepGoing = checkUserInput(userChoice) ? false : true;
-    while (keepGoing) {
-        informIncorrectUserInput();
-        userChoice = getUserInput();
-        keepGoing = checkUserInput(userChoice) ? false : true;
-    }
-    return userChoice;
-}
+// function getPlayerChoice() {
+//     let playerChoice = getPlayerInput();
+//     let keepGoing = checkplayerInput(playerChoice) ? false : true;
+//     while (keepGoing) {
+//         informIncorrectplayerInput();
+//         playerChoice = getPlayerInput();
+//         keepGoing = checkplayerInput(playerChoice) ? false : true;
+//     }
+//     return playerChoice;
+// }
 
-function getWinner(userChoice, computerChoice) {
+function getWinner(playerChoice, computerChoice) {
     if (
-        (userChoice === "EARTH" && computerChoice === "WATER") ||
-        (userChoice === "FIRE" && computerChoice === "EARTH") ||
-        (userChoice === "WATER" && computerChoice === "FIRE")
+        (playerChoice === "earth" && computerChoice === "water") ||
+        (playerChoice === "fire" && computerChoice === "earth") ||
+        (playerChoice === "water" && computerChoice === "fire")
     ) {
-        return "user";
+        return "player";
     } else if (
-        (computerChoice === "EARTH" && userChoice === "WATER") ||
-        (computerChoice === "FIRE" && userChoice === "EARTH") ||
-        (computerChoice === "WATER" && userChoice === "FIRE")
+        (computerChoice === "earth" && playerChoice === "water") ||
+        (computerChoice === "fire" && playerChoice === "earth") ||
+        (computerChoice === "water" && playerChoice === "fire")
     ) {
         return "computer";
     } else {
@@ -59,26 +59,26 @@ function getWinner(userChoice, computerChoice) {
     }
 }
 
-function playRound() {
-    let userChoice = getUserChoice();
+function playRound( playerChoice ) {
+    console.log(playerChoice);
     let computerChoice = getComputerChoice();
-    let winner = getWinner(userChoice, computerChoice);
-    return getRoundWinner(winner, userChoice, computerChoice);
+    let winner = getWinner(playerChoice, computerChoice);
+    console.log( getRoundWinner(winner, playerChoice, computerChoice) );
 }
 
-function getRoundWinner(winner, userChoice, computerChoice) {
+function getRoundWinner(winner, playerChoice, computerChoice) {
     roundCounter++;
     switch (winner) {
-        case "user":
-            userScoreCount++;
-            return `You won! ${userChoice} beats ${computerChoice} // User: ${userScoreCount} - ${computerScoreCount} :Computer`;
+        case "player":
+            playerScoreCount++;
+            return `You won! ${playerChoice} beats ${computerChoice} // Player: ${playerScoreCount} - ${computerScoreCount} :Computer`;
         case "computer":
             computerScoreCount++;
-            return `Computer won! ${computerChoice} beats ${userChoice} // User: ${userScoreCount} - ${computerScoreCount} :Computer`;
+            return `Computer won! ${computerChoice} beats ${playerChoice} // Player: ${playerScoreCount} - ${computerScoreCount} :Computer`;
         case "draw":
-            // userScoreCount++;
+            // playerScoreCount++;
             // computerScoreCount++;
-            return `It's a draw! Score: User: ${userScoreCount} - ${computerScoreCount} :Computer`;
+            return `It's a draw! Score: player: ${playerScoreCount} - ${computerScoreCount} :Computer`;
     }
 }
 
@@ -87,14 +87,30 @@ function game() {
     for (let i = 0; i < 5; i++) {
         console.log(playRound());
     }
-    if (userScoreCount > computerScoreCount) {
+    if (playerScoreCount > computerScoreCount) {
         overallWinner = "You won!";
-    } else if (computerScoreCount > userScoreCount) {
+    } else if (computerScoreCount > playerScoreCount) {
         overallWinner = "Computer won!";
     } else {
         overallWinner = "It's a draw!";
     }
     console.log(
-        `Game finished! ${overallWinner} User: ${userScoreCount} - ${computerScoreCount} :Computer`
+        `Game finished! ${overallWinner} player: ${playerScoreCount} - ${computerScoreCount} :Computer`
     );
 }
+
+const earthBtn = document.querySelector('.earthButton');
+const waterBtn = document.querySelector('.waterButton');
+const fireBtn = document.querySelector('.fireButton');
+
+earthBtn.addEventListener( 'click', function () {
+    playRound('earth');
+});
+
+waterBtn.addEventListener( 'click', function () {
+    playRound('water');
+});
+
+fireBtn.addEventListener( 'click', function () {
+    playRound('fire');
+});
