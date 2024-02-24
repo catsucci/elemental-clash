@@ -1,7 +1,7 @@
 'use strict'
 
 let round = {
-    roundCount:  0,
+    roundCount: 0,
     winner: "",
     playerSelection: "",
     computerSelection: ""
@@ -23,12 +23,12 @@ function getComputerSelection() {
     return selections[Math.floor(Math.random() * selections.length)];
 }
 
-function playRound( playerSelection ) {
-    if ( playerLivesLeft > 0 && computerLivesLeft > 0 ) {
+function playRound(playerSelection) {
+    if (playerLivesLeft > 0 && computerLivesLeft > 0) {
         let computerSelection = getComputerSelection();
         let winner = getWinner(playerSelection, computerSelection);
-        console.log( getRoundWinner(winner, playerSelection, computerSelection) );
-    } else if ( computerLivesLeft === 0 ) {
+        console.log(getRoundWinner(winner, playerSelection, computerSelection));
+    } else if (computerLivesLeft === 0) {
         console.log('Hehe, poor enemy has no lives left.. He barely holds himself in one piece.');
         console.log('You Won This Battle!');
     } else {
@@ -40,7 +40,7 @@ function playRound( playerSelection ) {
 }
 
 function getWinner(playerSelection, computerSelection) {
-    if ( playerSelection === computerSelection ) {
+    if (playerSelection === computerSelection) {
         return "draw";
     } else if (
         (computerSelection === "earth" && playerSelection === "water") ||
@@ -70,14 +70,14 @@ const earthBtn = document.querySelector('.earthButton');
 const waterBtn = document.querySelector('.waterButton');
 const fireBtn = document.querySelector('.fireButton');
 
-earthBtn.addEventListener( 'click', function () {
+earthBtn.addEventListener('click', function() {
     playRound('earth');
 });
 
-waterBtn.addEventListener( 'click', function () {
+waterBtn.addEventListener('click', function() {
     playRound('water');
 });
 
-fireBtn.addEventListener( 'click', function () {
+fireBtn.addEventListener('click', function() {
     playRound('fire');
 });
