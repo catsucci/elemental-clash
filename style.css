@@ -140,7 +140,8 @@ body {
     border-right: 4px solid #5e5e5e;
 }
 
-* Game End */ .opacity {
+/* Game End */
+.opacity {
     opacity: 0.5;
 }
 
@@ -154,7 +155,7 @@ body {
 }
 
 .playAgain {
-    /* visibility: hidden; */
+    visibility: hidden;
     margin-bottom: 60px;
     padding: 20px;
     font-size: 25px;
@@ -173,7 +174,7 @@ body {
 
 /* Footer */
 .copyright {
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     height: 50px;
     width: 100%;
