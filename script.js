@@ -155,12 +155,6 @@ nodes.elementButtons.forEach((element) => {
             nodes.elementIcons[1].style.color = '#5e5e5e';
             player.selection = 'fire';
         }
-        console.log('hello');
         game.play();
     });
-});
-
-nodes.elementButtons.forEach((element) => {
-    console.log(element);
-    console.log('hello');
 });
