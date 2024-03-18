@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const nodes = {
     elementButtons: document.querySelectorAll('.elementButton'),
@@ -10,24 +10,25 @@ const nodes = {
     npcPlayDiv: document.querySelector('.npcPlayDiv'),
     health: document.querySelector('.health'),
     gameEndText: document.querySelector('.gameEndText'),
-    elementIcons: document.querySelectorAll('.elementIcon')
-}
+    elementIcons: document.querySelectorAll('.elementIcon'),
+};
 
 const player = {
     health: 5,
-    selection: ''
-}
+    selection: '',
+};
 
 const npc = {
     health: 5,
     selection: '',
 
-    getSelection: function() {
-        let selections = ["earth", "water", "fire"];
-        npc.selection = selections[Math.floor(Math.random() * selections.length)];
+    getSelection: function () {
+        let selections = ['earth', 'water', 'fire'];
+        npc.selection =
+            selections[Math.floor(Math.random() * selections.length)];
         return npc.selection;
     },
-    play: function() {
+    play: function () {
         let selection = npc.getSelection();
 
         if (selection === 'earth') {
@@ -38,39 +39,51 @@ const npc = {
             nodes.npcIcon.setAttribute('alt', 'Fire');
         }
         return selection;
-    }
-}
+    },
+};
 
 const round = {
     number: 0,
     winner: '',
 
-    countRounds: function() {
+    countRounds: function () {
         round.number += 1;
         nodes.rounds.innerText = `Round: ${round.number}`;
         return round;
     },
-    countHealth: function() {
+    countHealth: function () {
         switch (true) {
-            case (player.selection === npc.selection):
+            case player.selection === npc.selection:
                 nodes.combatText.innerText = `Hmm.. Two ${player.selection}s means a draw, so no health were lost. Let's try again.`;
                 nodes.gameOutput.style.border = '4px solid #8070ac';
-                nodes.npcPlayDiv.classList.remove('greyBorder', 'greenBorder', 'redBorder');
+                nodes.npcPlayDiv.classList.remove(
+                    'greyBorder',
+                    'greenBorder',
+                    'redBorder',
+                );
                 nodes.npcPlayDiv.classList.add('purpleBorder');
                 break;
-            case (player.selection === 'earth' && npc.selection === 'water'):
-            case (player.selection === 'water' && npc.selection === 'fire'):
-            case (player.selection === 'fire' && npc.selection === 'earth'):
+            case player.selection === 'earth' && npc.selection === 'water':
+            case player.selection === 'water' && npc.selection === 'fire':
+            case player.selection === 'fire' && npc.selection === 'earth':
                 nodes.combatText.textContent = `Impressive attack! The enemy lost one life, because the great power of your ${player.selection} crushed his ${npc.selection}!`;
                 nodes.gameOutput.style.border = '4px solid #62b49c';
-                nodes.npcPlayDiv.classList.remove('greyBorder', 'redBorder', 'purpleBorder');
+                nodes.npcPlayDiv.classList.remove(
+                    'greyBorder',
+                    'redBorder',
+                    'purpleBorder',
+                );
                 nodes.npcPlayDiv.classList.add('greenBorder');
                 npc.health -= 1;
                 break;
             default:
                 nodes.combatText.innerText = `Unfortunate defeat.. You lost one life, because your ${player.selection} lacks of power against enemy's ${npc.selection}!`;
                 nodes.gameOutput.style.border = '4px solid #b96b78';
-                nodes.npcPlayDiv.classList.remove('greyBorder', 'greenBorder', 'purpleBorder');
+                nodes.npcPlayDiv.classList.remove(
+                    'greyBorder',
+                    'greenBorder',
+                    'purpleBorder',
+                );
                 nodes.npcPlayDiv.classList.add('redBorder');
                 player.health -= 1;
                 break;
@@ -79,10 +92,10 @@ const round = {
         nodes.health.innerText = `Your Health: ${player.health} ︱ Enemy's health: ${npc.health}`;
         return [player.health, npc.health];
     },
-}
+};
 
 const game = {
-    end: function() {
+    end: function () {
         if (player.health === 0 || npc.health === 0) {
             nodes.elementButtons.forEach((button) => {
                 button.setAttribute('disabled', '');
@@ -92,23 +105,25 @@ const game = {
             nodes.npcIcon.style.opacity = '0.5';
 
             if (player.health > npc.health) {
-                nodes.combatText.innerText = 'Hehe, poor enemy has no lives left.. He barely holds himself in one piece.';
+                nodes.combatText.innerText =
+                    'Hehe, poor enemy has no lives left.. He barely holds himself in one piece.';
                 nodes.gameEndText.textContent = 'You Won This Battle!';
                 nodes.gameEndText.style.color = '#62b49c';
             } else {
-                nodes.combatText.innerText = 'Ouch.. No lives left for you. Enjoy the mocking laughter of the enemy.';
+                nodes.combatText.innerText =
+                    'Ouch.. No lives left for you. Enjoy the mocking laughter of the enemy.';
                 nodes.gameEndText.textContent = 'You Lost This Battle!';
                 nodes.gameEndText.style.color = '#b96b78';
             }
             nodes.buttonPlayAgain.style.visibility = 'visible';
         }
     },
-    reset: function() {
+    reset: function () {
         nodes.buttonPlayAgain.addEventListener('click', () => {
             window.location.reload();
         });
     },
-    play: function() {
+    play: function () {
         // nodes.elementButtons.forEach((element) => {
         //     element.addEventListener('click', () => {
         //         if (element.classList.contains('earthButton')) {
@@ -134,8 +149,8 @@ const game = {
         round.countHealth();
         game.end();
         game.reset();
-    }
-}
+    },
+};
 
 nodes.elementButtons.forEach((element) => {
     element.addEventListener('click', () => {
