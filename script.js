@@ -30,13 +30,14 @@ const npc = {
     },
     play: function () {
         let selection = npc.getSelection();
+        const PRE_PATH = "drawables/";
 
         if (selection === 'earth') {
-            nodes.npcIcon.setAttribute('alt', 'Earth');
+            nodes.npcIcon.setAttribute('src', PRE_PATH + 'invertedSpearOfHeaven.png');
         } else if (selection === 'water') {
-            nodes.npcIcon.setAttribute('alt', 'Water');
+            nodes.npcIcon.setAttribute('src', PRE_PATH + 'imaginaryTechniquePurple.png');
         } else if (selection === 'fire') {
-            nodes.npcIcon.setAttribute('alt', 'Fire');
+            nodes.npcIcon.setAttribute('src', PRE_PATH + 'bigRaga.png');
         }
         return selection;
     },

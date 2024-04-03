@@ -61,6 +61,7 @@ body {
     color: #5e5e5e;
     font-size: 70px;
     transition: all .3s;
+    width: 100px;
 }
 
 .elementIcon:hover {
@@ -184,4 +185,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.npcIcon {
+    width: 64px;
 }
