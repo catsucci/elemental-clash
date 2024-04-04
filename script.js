@@ -30,7 +30,7 @@ const npc = {
     },
     play: function () {
         let selection = npc.getSelection();
-        const PRE_PATH = "drawables/";
+        const PRE_PATH = "drawables/images/";
 
         if (selection === 'earth') {
             nodes.npcIcon.setAttribute('src', PRE_PATH + 'invertedSpearOfHeaven.png');
